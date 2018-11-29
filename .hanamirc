@@ -1,0 +1,3 @@
+project=google_drive_fileuploader
+test=rspec
+template=slim
