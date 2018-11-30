@@ -1,25 +1,27 @@
+require 'google/apis/drive_v3'
+
 module Web
   module Controllers
     module Home
       class Oauth2Callback
         include Web::Action
-        expose :title
+        include Hanami::Action::Session
 
         def call(params)
-          # user_credentials.code = params[:code] if params[:code]
-          # user_credentials.fetch_access_token!
-          # redirect_to '/'
+          $client.code = params[:code] if params[:code]
+          $client.fetch_access_token!
+          drive_api.authorization = $client
+          file_metadata = {
+            name: "JR-#{Time.now.strftime('%d-%m-%Y-%I:%M')}.txt",
+            mime_type: 'text/plain'
+          }
+          file = drive_api.create_file(file_metadata, fields: 'id')
+          flash[:message] = "Complete! file: #{file.inspect}"
+          redirect_to '/'
         end
 
-        def user_credentials
-          # Build a per-request oauth credential based on token stored in session
-          # which allows us to use a shared API client.
-          # @authorization ||= (
-          #   auth = settings.authorization.dup
-          #   auth.redirect_uri = to('/oauth2callback')
-          #   auth.update_token!(session)
-          #   auth
-          # )
+        def drive_api
+          @drive_api ||= ::Google::Apis::DriveV3::DriveService.new
         end
       end
     end

@@ -1,6 +1,9 @@
 require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
+
+require 'google/apis/drive_v3'
+
 require_relative '../lib/google_drive_fileuploader'
 require_relative '../apps/web/application'
 

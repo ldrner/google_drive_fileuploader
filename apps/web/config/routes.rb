@@ -4,6 +4,8 @@
 # Example:
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
 get '/', to: 'home#index'
+post '/create', to: 'home#create'
+get '/create', to: 'home#create'
 
 get '/oauth2callback', to: 'home#oauth2_callback'
 

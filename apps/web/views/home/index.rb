@@ -3,6 +3,7 @@ module Web
     module Home
       class Index
         include Web::View
+
       end
     end
   end

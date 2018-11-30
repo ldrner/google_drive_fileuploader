@@ -1,2 +1,18 @@
-h1 Hello
-p = title
+- if message
+  .alert
+    = message
+h1 = link_to('Hello Google Drive!', 'https://drive.google.com/drive/my-drive', target: '_blank')
+
+#content
+  / span
+    / = link_to('Process Oauth2', '/oauth2authorize')
+  .box
+    span
+      / | Upload your file here
+
+    = link_to('Process Oauth2 && GOGOGOGO!', '/oauth2authorize')
+    / = link_to('GOGOGOGO!', '/create')
+
+    / = form_for :form, '/create', enctype: 'multipart/form-data' do
+    /   = file_field :asset
+    /   = submit 'Create file!'
