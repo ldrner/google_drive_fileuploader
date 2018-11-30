@@ -10,8 +10,14 @@ module Web
         # end
 
         def call(params)
-          @title = 'Hello'
+
+          # @title = client.configuration.inspect
+          @title = client.authorization_uri
           # self.body = @greeting.message
+        end
+
+        def client
+          GoogleDriveFileuploader::Services::APIClient.connection
         end
       end
     end

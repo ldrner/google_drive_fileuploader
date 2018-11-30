@@ -5,6 +5,7 @@ gem 'hanami',       '~> 1.3'
 gem 'hanami-model', '~> 1.3'
 gem 'slim'
 gem 'pg'
+gem 'signet', '~> 0.11.0'
 # gem 'sqlite3'
 
 group :development do
