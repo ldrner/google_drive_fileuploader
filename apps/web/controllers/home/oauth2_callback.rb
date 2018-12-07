@@ -16,7 +16,7 @@ module Web
             mime_type: 'text/plain'
           }
           file = drive_api.create_file(file_metadata, fields: 'id')
-          flash[:message] = "Complete! file: #{file.inspect}"
+          flash[:message] = "Complete! File #{file&.name || file&.id} created!"
           redirect_to '/'
         rescue => e
           flash[:message] = e.message
